@@ -1,0 +1,7 @@
+#  Add directives
+RewriteEngine on
+
+#  Change root directory to "web" folder
+RewriteCond %{THE_REQUEST} ^GET\ /bedrock/web/
+RewriteRule ^bedrock/web/(.*) /$1 [L,R=301]
+RewriteRule !^bedrock/web/ bedrock/web%{REQUEST_URI} [L]

@@ -1,0 +1,43 @@
+version: '2'
+services:
+  wp:
+    image: wp_sage_php
+    build:
+      context: .
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - './debug.log:/var/www/html/debug.log'
+      - './bedrock/.env.docker:/var/www/html/.env'
+      - './bedrock/web/app/uploads/2021/:/var/www/html/web/app/uploads/2021/:rw,cached'
+      - './bedrock/web/app/themes/sage/:/var/www/html/web/app/themes/sage/:rw,cached'
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_USER=bedrock_sage
+      - MYSQL_DATABASE=bedrock_sage
+      - MYSQL_PASSWORD=ssdvrwsde4Y%wxIK5
+      - MYSQL_ROOT_PASSWORD=ilmsdcypp3dLjKTdvsdvB
+    ports:
+      - "33061:3306"
+    volumes:
+      - './mysql/dblogs:/var/log/mysql'
+      - './mysql/database:/var/lib/mysql'
+      - './mysql/mysql_dump:/backup_sql'
+      - './mysql/mysql_inject:/docker-entrypoint-initdb.d'
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    links:
+      - db:db
+    ports:
+      - 8765:80
+    volumes:
+      - './mysql/uploads.ini:/usr/local/etc/php/php.ini'
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: ilmsdcypp3dLjKTdvsdvB
+    depends_on:
+      - db

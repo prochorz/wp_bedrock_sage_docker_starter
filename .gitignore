@@ -1,0 +1,13 @@
+/.idea
+mysql/database
+mysql/dblogs
+mysql/mysql_inject/*
+!mysql/mysql_inject/.gitkeep
+**/.github
+
+deploy.sh
+!deploy.example.sh
+deploy.*.sh
+debug.log
+
+.DS_Store
