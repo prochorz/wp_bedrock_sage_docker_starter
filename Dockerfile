@@ -45,7 +45,7 @@ RUN cd /var/www/html/ && composer install --no-scripts
 
 FROM composer:latest AS composer-sage
 
-COPY ./bedrock/web/app/themes/sage/composer.json /var/www/html/web/app/themes/sigagroup/
+COPY ./bedrock/web/app/themes/sage/composer.json /var/www/html/web/app/themes/sage/
 RUN cd /var/www/html/web/app/themes/sage && composer install
 
 FROM builder

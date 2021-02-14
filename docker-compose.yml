@@ -10,8 +10,15 @@ services:
     volumes:
       - './debug.log:/var/www/html/debug.log'
       - './bedrock/.env.docker:/var/www/html/.env'
+      - './mysql/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
+      - './bedrock/web/.htaccess:/var/www/html/web/.htaccess:rw,cached'
+      - './bedrock/web/app/uploads/cache/:/var/www/html/web/app/uploads/cache/:rw,cached'
       - './bedrock/web/app/uploads/2021/:/var/www/html/web/app/uploads/2021/:rw,cached'
-      - './bedrock/web/app/themes/sage/:/var/www/html/web/app/themes/sage/:rw,cached'
+#      - './bedrock/web/app/themes/sage/:/var/www/html/web/app/themes/sage/:rw,cached'
+      - type: 'bind'
+        source: './bedrock/web/app/themes/sage/'
+        target: '/var/www/html/web/app/themes/sage/'
+        consistency: 'cached'
   db:
     image: mysql:5.7
     restart: always

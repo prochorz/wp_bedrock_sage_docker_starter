@@ -91,6 +91,7 @@ Config::define('NONCE_SALT', env('NONCE_SALT'));
 /**
  * Custom Settings
  */
+Config::define('ALLOW_UNFILTERED_UPLOADS', true);
 Config::define('AUTOMATIC_UPDATER_DISABLED', true);
 Config::define('DISABLE_WP_CRON', env('DISABLE_WP_CRON') ?: false);
 // Disable the plugin and theme file editor in the admin
@@ -128,3 +129,5 @@ Config::apply();
 if (!defined('ABSPATH')) {
     define('ABSPATH', $webroot_dir . '/wp/');
 }
+
+define( 'FS_METHOD', 'direct' );

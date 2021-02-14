@@ -60,8 +60,15 @@ bash ./pre-commit.hooks
 if you need crop image run this
 ```
 docker-compose up -d
-docker exec sigagroupcomua_wp_1 sh -c 'wp media regenerate --yes --only-missing --allow-root'
+docker exec op_wp_1 sh -c 'wp media regenerate --yes --only-missing --allow-root'
 php C:\wp-cli.phar media regenerate --yes --only-missing --allow-root
+```
+
+if you need backup DB
+```
+docker-compose up -d db;
+docker exec op_db_1 sh -c 'exec /usr/bin/mysqldump -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" > /backup_sql/"$MYSQL_DATABASE".sql';
+git add mysql/mysql_dump/bedrock_datami.sql; break;;
 ```
 
 Remove all
@@ -74,3 +81,10 @@ Need this file
 ```
 /bedrock/.htaccess
 ```
+
+*** Loop refresh browser sync
+Okay super hard to find, but apparently the BrowserSync loop on localhost:3000 was caused by the WPML plugin’s option: Browser language redirect which was set to:
+
+Redirect visitors based on browser language only if translations exist
+
+I disabled it and now BrowserSync works as expected!
