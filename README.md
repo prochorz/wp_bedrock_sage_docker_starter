@@ -24,8 +24,7 @@ wp media regenerate --yes --only-missing --allow-root
 
 update ENV
 ```
-cd ./bedrock/.env
-cp ./.evn.example ./.env
+cp ./bedrock/.evn.example ./bedrock/.env
 ```
 
 ## For Developer
@@ -61,6 +60,10 @@ if you need crop image run this
 ```
 docker-compose up -d
 docker exec op_wp_1 sh -c 'wp media regenerate --yes --only-missing --allow-root'
+```
+
+without docker on local
+```
 php C:\wp-cli.phar media regenerate --yes --only-missing --allow-root
 ```
 
