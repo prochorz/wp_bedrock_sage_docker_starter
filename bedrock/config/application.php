@@ -131,3 +131,6 @@ if (!defined('ABSPATH')) {
 }
 
 define( 'FS_METHOD', 'direct' );
+
+/** Enable Cache by WP Rocket */
+define( 'WP_CACHE', true );
