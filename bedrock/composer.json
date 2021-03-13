@@ -56,7 +56,7 @@
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.0.0",
     "roots/soil": "^3.9",
-    "wp-media/wp-rocket": "^3.6",
+    "wp-media/wp-rocket": "3.6",
     "wpackagist-plugin/cyr3lat":"^3.5",
     "wpackagist-plugin/duplicate-post":"^4.0.1",
     "wpackagist-plugin/wordpress-seo":"^15.5",
