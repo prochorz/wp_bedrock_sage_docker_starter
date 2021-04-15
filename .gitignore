@@ -6,8 +6,8 @@ mysql/mysql_inject/*
 **/.github
 
 deploy.sh
-!deploy.example.sh
 deploy.*.sh
+!deploy.example.sh
 debug.log
 
 .DS_Store

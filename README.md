@@ -70,8 +70,8 @@ php C:\wp-cli.phar media regenerate --yes --only-missing --allow-root
 if you need backup DB
 ```
 docker-compose up -d db;
-docker exec op_db_1 sh -c 'exec /usr/bin/mysqldump -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" > /backup_sql/"$MYSQL_DATABASE".sql';
-git add mysql/mysql_dump/bedrock_datami.sql; break;;
+docker exec <PREFIX>_db_1 sh -c 'exec /usr/bin/mysqldump --no-tablespaces -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" "$MYSQL_DATABASE" > /backup_sql/"$MYSQL_DATABASE".sql';
+git add mysql/mysql_dump/bedrock_sage.sql; break;;
 ```
 
 Remove all
