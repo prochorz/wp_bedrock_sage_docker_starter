@@ -2,6 +2,7 @@
 web/app/plugins/*
 !web/app/plugins/.gitkeep
 web/app/mu-plugins/*/
+web/app/themes/twentytwentythree/
 web/app/upgrade
 web/app/uploads/cache/
 web/app/uploads/**/*-[0-9]*x[0-9]*.*
@@ -22,7 +23,6 @@ web/wp
 # Dotenv
 .env
 .env.*
-!.env.docker
 !.env.example
 
 # Composer
@@ -30,15 +30,3 @@ web/wp
 
 # WP-CLI
 wp-cli.local.yml
-
-.idea
-.DS_Store
-
-# bash
-deploy.sh
-deploy*.sh
-
-# lock
-composer.lock
-package-lock.json
-report.*.json

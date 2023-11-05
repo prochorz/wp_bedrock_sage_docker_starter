@@ -1,4 +1,5 @@
 /.idea
+/.history
 mysql/database
 mysql/dblogs
 mysql/mysql_inject/*

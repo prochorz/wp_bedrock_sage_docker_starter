@@ -1,4 +1,4 @@
-FROM php:7.3-apache AS builder
+FROM php:8.1-apache AS builder
 
 RUN a2enmod rewrite headers
 RUN apt-get update
@@ -14,11 +14,11 @@ RUN apt-get install -y \
     sendmail
 
 RUN docker-php-ext-configure gd \
-    --with-webp-dir=/usr/include/ \
-    --with-freetype-dir=/usr/include/ \
-    --with-jpeg-dir=/usr/include/ \
+    --with-webp=/usr/include/ \
+    --with-freetype=/usr/include/ \
+    --with-jpeg=/usr/include/ \
     && docker-php-ext-install mysqli exif zip gd \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && sed -i 's|www/html|www/html/web|' /etc/apache2/sites-enabled/000-default.conf \
@@ -37,13 +37,13 @@ RUN cd /usr/local/bin \
 #    && chmod +x /usr/local/bin/wp \
 #    && usermod --non-unique --uid 1000 www-data
 
-FROM composer:latest AS composer-bedrock
+FROM composer:2.2 AS composer-bedrock
 
 COPY ./bedrock/plugins /var/www/html/plugins
 COPY ./bedrock/composer.json /var/www/html/
 RUN cd /var/www/html/ && composer install --no-scripts
 
-FROM composer:latest AS composer-sage
+FROM composer:2.2 AS composer-sage
 
 COPY ./bedrock/web/app/themes/sage/composer.json /var/www/html/web/app/themes/sage/
 RUN cd /var/www/html/web/app/themes/sage && composer install

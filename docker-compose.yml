@@ -9,9 +9,8 @@ services:
       - 8080:80
     volumes:
       - './debug.log:/var/www/html/debug.log'
-      - './bedrock/.env.docker:/var/www/html/.env'
+      - './.env.docker:/var/www/html/.env'
       - './mysql/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini'
-      - './bedrock/web/.htaccess:/var/www/html/web/.htaccess:rw,cached'
       - './bedrock/web/app/uploads/cache/:/var/www/html/web/app/uploads/cache/:rw,cached'
       - './bedrock/web/app/uploads/2021/:/var/www/html/web/app/uploads/2021/:rw,cached'
 #      - './bedrock/web/app/themes/sage/:/var/www/html/web/app/themes/sage/:rw,cached'
@@ -20,6 +19,7 @@ services:
         target: '/var/www/html/web/app/themes/sage/'
         consistency: 'cached'
   db:
+    platform: linux/amd64
     image: mysql:5.7
     restart: always
     environment:
@@ -35,6 +35,7 @@ services:
       - './mysql/mysql_dump:/backup_sql'
       - './mysql/mysql_inject:/docker-entrypoint-initdb.d'
   phpmyadmin:
+    platform: linux/amd64
     image: phpmyadmin/phpmyadmin
     restart: always
     links:
